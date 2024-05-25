@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Table(name = "order_item")
 
 
-public class OrderItem {
+public class OrdersItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

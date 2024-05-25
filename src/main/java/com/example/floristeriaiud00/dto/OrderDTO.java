@@ -18,13 +18,13 @@ public class OrderDTO {
     private String occasion;
     private Date deliveryDate;
     private String status;
-    private List<OrderItemDTO> orderItems;
+    private List<OrdersItemDTO> orderItems;
 
     public OrderDTO() {
     }
 
     public OrderDTO(Long id, Long customerId, String occasion, Date deliveryDate, String status,
-            List<OrderItemDTO> orderItems) {
+            List<OrdersItemDTO> orderItems) {
         this.id = id;
         this.customerId = customerId;
         this.occasion = occasion;
@@ -73,11 +73,11 @@ public class OrderDTO {
         this.status = status;
     }
 
-    public List<OrderItemDTO> getOrderItems() {
+    public List<OrdersItemDTO> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(List<OrderItemDTO> orderItems) {
+    public void setOrderItems(List<OrdersItemDTO> orderItems) {
         this.orderItems = orderItems;
     }
 }

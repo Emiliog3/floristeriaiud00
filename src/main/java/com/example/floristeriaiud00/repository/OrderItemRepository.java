@@ -3,8 +3,8 @@
 
 package com.example.floristeriaiud00.repository;
 
-import com.example.floristeriaiud00.entity.OrderItem;
+import com.example.floristeriaiud00.entity.OrdersItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
+public interface OrderItemRepository extends JpaRepository<OrdersItem, Long> {
 }

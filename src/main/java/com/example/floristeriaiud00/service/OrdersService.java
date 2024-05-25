@@ -9,17 +9,17 @@
 package com.example.floristeriaiud00.service;
 
 import com.example.floristeriaiud00.entity.Order;
-import com.example.floristeriaiud00.repository.OrderRepository;
+import com.example.floristeriaiud00.repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class OrderService {
+public class OrdersService {
 
     @Autowired
-    private OrderRepository orderRepository;
+    private OrdersRepository orderRepository;
 
     public List<Order> getAllOrders() {
         return orderRepository.findAll();

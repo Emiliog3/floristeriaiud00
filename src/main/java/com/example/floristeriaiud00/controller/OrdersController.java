@@ -4,7 +4,7 @@
 package com.example.floristeriaiud00.controller;
 
 import com.example.floristeriaiud00.entity.Order;
-import com.example.floristeriaiud00.service.OrderService;
+import com.example.floristeriaiud00.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
-public class OrderController {
+public class OrdersController {
 
     @Autowired
-    private OrderService orderService;
+    private OrdersService orderService;
 
     @GetMapping
     public List<Order> getAllOrders() {

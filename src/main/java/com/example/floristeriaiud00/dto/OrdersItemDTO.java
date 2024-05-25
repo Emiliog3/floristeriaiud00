@@ -2,17 +2,17 @@ package com.example.floristeriaiud00.dto;
 
 import java.math.BigDecimal;
 
-public class OrderItemDTO {
+public class OrdersItemDTO {
     private Long id;
     private Long orderId;
     private Long flowerId;
     private int quantity;
     private BigDecimal price;
 
-    public OrderItemDTO() {
+    public OrdersItemDTO() {
     }
 
-    public OrderItemDTO(Long id, Long orderId, Long flowerId, int quantity, BigDecimal price) {
+    public OrdersItemDTO(Long id, Long orderId, Long flowerId, int quantity, BigDecimal price) {
         this.id = id;
         this.orderId = orderId;
         this.flowerId = flowerId;

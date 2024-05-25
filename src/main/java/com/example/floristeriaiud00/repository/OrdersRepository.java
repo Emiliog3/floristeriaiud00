@@ -6,5 +6,5 @@ package com.example.floristeriaiud00.repository;
 import com.example.floristeriaiud00.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface OrdersRepository extends JpaRepository<Order, Long> {
 }
