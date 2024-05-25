@@ -36,3 +36,4 @@ public class CustomerController {
         customerService.deleteCustomer(id); // Elimina el cliente con el ID especificado de la base de datos
     }
 }
+
