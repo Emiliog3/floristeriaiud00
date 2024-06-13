@@ -2,7 +2,11 @@
 
 package com.example.floristeriaiud00.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 
@@ -12,6 +16,8 @@ import jakarta.persistence.*;
 public class Customer {
 
     @Id
+
+    
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -21,3 +27,5 @@ public class Customer {
 
     // Getters and setters
 }
+
+

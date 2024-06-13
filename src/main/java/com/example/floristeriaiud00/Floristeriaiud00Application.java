@@ -16,7 +16,9 @@ public class Floristeriaiud00Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Floristeriaiud00Application.class, args);
+		System.out.println("\n"); // Salto de línea
 		System.out.println("La aplicación se ejecutó correctamente.");
+		System.out.println("\n"); // Salto de línea
 	}
 
 }
