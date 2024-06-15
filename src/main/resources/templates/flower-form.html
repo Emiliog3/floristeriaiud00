@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flower Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            /* Color de fondo claro */
+            background-image: url('https://img.freepik.com/vector-gratis/fondo-primavera-dibujado-flores_23-2148833619.jpg?size=626&ext=jpg');
+            /* URL de la imagen de fondo */
+            background-size: cover;
+            /* Ajuste de tamaño de la imagen de fondo */
+            background-repeat: no-repeat;
+            /* No repetir la imagen */
+            background-attachment: fixed;
+            /* Fijar la imagen para que no se mueva al hacer scroll */
+        }
+
+        h1 {
+            color: #495057;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background-color: #5a6268;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Flower Form</h1>
+
+        <form th:action="@{/flowers/add}" th:object="${flower}" method="post">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="mb-3">
+                <label for="type" class="form-label">Type:</label>
+                <input type="text" id="type" class="form-control" th:field="*{type}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="color" class="form-label">Color:</label>
+                <input type="text" id="color" class="form-control" th:field="*{color}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="variety" class="form-label">Variety:</label>
+                <input type="text" id="variety" class="form-control" th:field="*{variety}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="quantityAvailable" class="form-label">Quantity Available:</label>
+                <input type="number" id="quantityAvailable" class="form-control" th:field="*{quantityAvailable}"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label for="purchasePrice" class="form-label">Purchase Price:</label>
+                <input type="number" id="purchasePrice" class="form-control" th:field="*{purchasePrice}" step="0.01"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label for="sellingPrice" class="form-label">Selling Price:</label>
+                <input type="number" id="sellingPrice" class="form-control" th:field="*{sellingPrice}" step="0.01"
+                    required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+
+        <a href="/home/" class="btn-back">Back to Home</a>
+    </div>
+
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,10 +1,11 @@
-// Esta clase es un repositorio de JPA que se encarga de gestionar la tabla "customer" en la base de datos.
 
 
-package com.example.floristeriaiud00.repository;
+ package com.example.floristeriaiud00.repository;
 
-import com.example.floristeriaiud00.entity.Customer;
+import com.example.floristeriaiud00.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 }

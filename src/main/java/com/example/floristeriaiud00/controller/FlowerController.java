@@ -1,48 +1,59 @@
-// Esta clase sirve para manejar las peticiones GET a las rutas "/api/customers" y retornar los datos de los clientes en formato JSON.
-
 
 package com.example.floristeriaiud00.controller;
 
-import com.example.floristeriaiud00.entity.Flower;
+import com.example.floristeriaiud00.model.Flower;
 import com.example.floristeriaiud00.service.FlowerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/flowers")
 public class FlowerController {
 
     @Autowired
     private FlowerService flowerService;
 
-    @GetMapping
-    public List<Flower> getAllFlowers() {
-        return flowerService.getAllFlowers();
+    @GetMapping("/")
+    public String getAllFlowers(Model model) {
+        List<Flower> flowers = flowerService.getAllFlowers();
+        model.addAttribute("flowers", flowers);
+        return "flower-list";
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Flower> getFlowerById(@PathVariable Long id) {
-        Flower flower = flowerService.getFlowerById(id);
-        if (flower == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(flower);
+    @GetMapping("/add")
+    public String showAddForm(Model model) {
+        model.addAttribute("flower", new Flower());
+        return "flower-form";
     }
 
-    @PostMapping
-    public Flower createFlower(@RequestBody Flower flower) {
-        return flowerService.saveFlower(flower);
+    @PostMapping("/add")
+    public String addFlower(@ModelAttribute("flower") Flower flower) {
+        flowerService.saveFlower(flower);
+        return "redirect:/flowers/";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFlower(@PathVariable Long id) {
-        if (flowerService.getFlowerById(id) == null) {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
+        Flower flower = flowerService.getFlowerById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid flower Id:" + id));
+        model.addAttribute("flower", flower);
+        return "flower-form";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateFlower(@PathVariable("id") Long id, @ModelAttribute("flower") Flower flower) {
+        flower.setId(id);
+        flowerService.saveFlower(flower);
+        return "redirect:/flowers/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteFlower(@PathVariable("id") Long id) {
         flowerService.deleteFlower(id);
-        return ResponseEntity.noContent().build();
+        return "redirect:/flowers/";
     }
 }

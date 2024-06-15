@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Menu - Jardín de Aromas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            /* Color de fondo claro */
+            background-image: url('https://img.freepik.com/vector-gratis/fondo-primavera-dibujado-flores_23-2148833619.jpg?size=626&ext=jpg');
+            /* URL de la imagen de fondo */
+            background-size: cover;
+            /* Ajuste de tamaño de la imagen de fondo */
+            background-repeat: no-repeat;
+            /* No repetir la imagen */
+            background-attachment: fixed;
+            /* Fijar la imagen para que no se mueva al hacer scroll */
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Fondo semitransparente para la barra de navegación */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Sombra ligera */
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            /* Asegura que la barra esté por encima de otros elementos */
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .navbar-nav .nav-link {
+            color: #495057;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff;
+            /* Cambio de color al pasar el mouse */
+        }
+
+        .container-fluid {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .content {
+            padding-top: 70px;
+            /* Ajuste para evitar que el contenido quede detrás de la barra de navegación */
+        }
+
+        .menu-description {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin-top: 100px;
+            /* Ajuste para separar el contenido de la barra de navegación */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-description h1 {
+            font-size: 3rem;
+            color: #495057;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .menu-description p {
+            font-size: 1.2rem;
+            color: #495057;
+            text-align: justify;
+        }
+
+        .footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px 0;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer p {
+            margin-bottom: 5px;
+        }
+
+        .social-icons a {
+            color: #495057;
+            font-size: 24px;
+            margin: 0 10px;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+        .slogan {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #495057;
+        }
+
+        .footer-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 15px;
+        }
+
+        .footer-subtitle {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Jardín de Aromas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/customers/">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/orders/">Órdenes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/flowers/">Flores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sellers/">Vendedores</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <div class="container menu-description">
+            <h1>Bienvenidos a Jardín de Aromas</h1>
+            <p>
+                En Jardín de Aromas nos dedicamos a cultivar y compartir la belleza y los beneficios de las flores.
+                Desde arreglos florales para ocasiones especiales hasta plantas de interior que llenan tu hogar de
+                frescura,
+                cada flor que ofrecemos lleva consigo una historia de amor por la naturaleza.
+            </p>
+            <p>
+                Descubre cómo los aromas de las flores pueden transformar tu espacio y tu estado de ánimo. Permítenos
+                guiar tu experiencia hacia un mundo de colores, fragancias y emociones positivas en cada visita a
+                nuestro jardín.
+            </p>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h5 class="footer-title">Contacto</h5>
+                    <p>Email: info@jardinaromas.com</p>
+                    <p>Teléfono: +57 123 456 7890</p>
+                    <p>Dirección: Medellín, Colombia</p>
+                </div>
+                <div class="col">
+                    <h5 class="footer-title">Síguenos</h5>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col">
+                    <h5 class="footer-title">Enlaces de Interés</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.minambiente.gov.co/" target="_blank">Ministerio de Ambiente y Desarrollo
+                                Sostenible</a></li>
+                        <li><a href="http://www.parquesnacionales.gov.co/" target="_blank">Parques Nacionales Naturales
+                                de Colombia</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="slogan">Transformando espacios con la belleza de la naturaleza</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="text-muted">&copy; 2024 Jardín de Aromas. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,49 +1,67 @@
-// Esta clase sirve para manejar las peticiones GET a las rutas "/api/orders" y retornar los datos de las órdenes en formato JSON.
-
-
 
 package com.example.floristeriaiud00.controller;
 
-import com.example.floristeriaiud00.entity.Order;
-import com.example.floristeriaiud00.service.OrdersService;
+import com.example.floristeriaiud00.model.Order1;
+import com.example.floristeriaiud00.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/orders")
 public class OrderController {
 
     @Autowired
-    private OrdersService ordersService;
+    private OrderService orderService;
 
-    @GetMapping
-    public List<Order> getAllOrders() {
-        return ordersService.getAllOrders();
+    @GetMapping("/")
+    public String getAllOrders(Model model) {
+        List<Order1> orders = orderService.getAllOrders();
+        model.addAttribute("orders", orders);
+        return "order-list";
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
-        Order order = ordersService.getOrderById(id);
-        if (order == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(order);
+    @GetMapping("/add")
+    public String showAddForm(Model model) {
+        model.addAttribute("order", new Order1());
+        return "order-form";
     }
 
-    @PostMapping
-    public Order createOrder(@RequestBody Order order) {
-        return ordersService.saveOrder(order);
+
+
+
+    @PostMapping("/add")
+    public String addOrder(@ModelAttribute("order") Order1 order) {
+        // La conversión de String a LocalDate debería ser manejada automáticamente por Spring Boot
+        orderService.saveOrder(order);
+        return "redirect:/orders/";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
-        if (ordersService.getOrderById(id) == null) {
-            return ResponseEntity.notFound().build();
-        }
-        ordersService.deleteOrder(id);
-        return ResponseEntity.noContent().build();
+
+
+
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
+        Order1 order = orderService.getOrderById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid order Id:" + id));
+        model.addAttribute("order", order);
+        return "order-form";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateOrder(@PathVariable("id") Long id, @ModelAttribute("order") Order1 order) {
+        order.setId(id);
+        orderService.saveOrder(order);
+        return "redirect:/orders/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteOrder(@PathVariable("id") Long id) {
+        orderService.deleteOrder(id);
+        return "redirect:/orders/";
     }
 }

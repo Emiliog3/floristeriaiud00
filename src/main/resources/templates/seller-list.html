@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Seller List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            /* Color de fondo claro */
+            background-image: url('https://img.freepik.com/vector-gratis/fondo-primavera-dibujado-flores_23-2148833619.jpg?size=626&ext=jpg');
+            /* URL de la imagen de fondo */
+            background-size: cover;
+            /* Ajuste de tamaño de la imagen de fondo */
+            background-repeat: no-repeat;
+            /* No repetir la imagen */
+            background-attachment: fixed;
+            /* Fijar la imagen para que no se mueva al hacer scroll */
+        }
+
+        h1 {
+            color: #495057;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-success {
+            background-color: #198754;
+            border-color: #198754;
+        }
+
+        .btn-success:hover {
+            background-color: #146c43;
+            border-color: #146c43;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #5a6268;
+        }
+
+        .table {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Seller List</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="seller : ${sellers}">
+                    <td th:text="${seller.id}">1</td>
+                    <td th:text="${seller.firstName}">John</td>
+                    <td th:text="${seller.lastName}">Doe</td>
+                    <td th:text="${seller.email}">john.doe@example.com</td>
+                    <td th:text="${seller.phone}">123456789</td>
+                    <td th:text="${seller.address}">123 Street Name</td>
+                    <td>
+                        <a th:href="@{/sellers/edit/{id}(id=${seller.id})}" class="btn btn-primary">Edit</a>
+                        <a th:href="@{/sellers/delete/{id}(id=${seller.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/sellers/add" class="btn btn-success">Add Seller</a>
+        <a href="/home/" class="btn btn-secondary">Back to Home</a>
+    </div>
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,49 +1,61 @@
-// Esta clase sirve para manejar las peticiones GET a las rutas "/home" y "/home/index" y retornar las vistas "home2" y "home" respectivamente.
 
 
+ package com.example.floristeriaiud00.controller;
 
-package com.example.floristeriaiud00.controller;
-
-import com.example.floristeriaiud00.entity.Customer;
+import com.example.floristeriaiud00.model.Customer;
 import com.example.floristeriaiud00.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/customers")
+
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping
-    public List<Customer> getAllCustomers() {
-        return customerService.getAllCustomers();
+    @GetMapping("/")
+    public String getAllCustomers(Model model) {
+        List<Customer> customers = customerService.getAllCustomers();
+        model.addAttribute("customers", customers);
+        return "customer-list";
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) {
-        Customer customer = customerService.getCustomerById(id);
-        if (customer == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(customer);
+    @GetMapping("/add")
+    public String showAddForm(Model model) {
+        model.addAttribute("customer", new Customer());
+        return "customer-form";
     }
 
-    @PostMapping
-    public Customer createCustomer(@RequestBody Customer customer) {
-        return customerService.saveCustomer(customer);
+    @PostMapping("/add")
+    public String addCustomer(@ModelAttribute("customer") Customer customer) {
+        customerService.saveCustomer(customer);
+        return "redirect:/customers/";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
-        if (customerService.getCustomerById(id) == null) {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
+        Customer customer = customerService.getCustomerById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid customer Id:" + id));
+        model.addAttribute("customer", customer);
+        return "customer-form";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateCustomer(@PathVariable("id") Long id, @ModelAttribute("customer") Customer customer) {
+        customer.setId(id);
+        customerService.saveCustomer(customer);
+        return "redirect:/customers/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteCustomer(@PathVariable("id") Long id) {
         customerService.deleteCustomer(id);
-        return ResponseEntity.noContent().build();
+        return "redirect:/customers/";
     }
 }
